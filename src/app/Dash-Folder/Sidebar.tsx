@@ -162,7 +162,7 @@ const DashboardSidebar = () => {
             <FaChartBar /> {isOpen ? 'Analytics' : <Tooltip>Analytics</Tooltip>}
           </SidebarLink>
 
-          <SidebarLink href="/ContactUs" isOpen={isOpen}>
+          <SidebarLink href="/Contact_Us" isOpen={isOpen}>
             <FaEnvelope /> {isOpen ? 'Contact us' : <Tooltip> Contact us </Tooltip> }
           </SidebarLink>
 

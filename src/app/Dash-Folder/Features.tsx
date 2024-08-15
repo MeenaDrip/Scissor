@@ -107,7 +107,7 @@ const FeatureBoxes = () => {
             </StyledLink>
           </Link>
         </Box>
-{/* 
+
         <Box>
           <Link href="/CustomUrl" legacyBehavior>
             <StyledLink>
@@ -126,7 +126,7 @@ const FeatureBoxes = () => {
               <BoxDescription>Create QR codes for your shortened links easily.</BoxDescription>
             </StyledLink>
           </Link>
-        </Box> */}
+        </Box>
 
         <Box>
           <Link href="/Analytics" legacyBehavior>

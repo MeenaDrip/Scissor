@@ -34,7 +34,10 @@ const AccordionItem = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const AccordionTitle = styled.div<{ isOpen: boolean }>`
+// Filter out isOpen prop before it reaches the DOM
+const AccordionTitle = styled.div.attrs<{ isOpen: boolean }>({
+  isOpen: undefined,
+})<{ isOpen: boolean }>`
   padding: 20px;
   cursor: pointer;
   display: flex;
@@ -45,7 +48,9 @@ const AccordionTitle = styled.div<{ isOpen: boolean }>`
   background-color: ${props => (props.isOpen ? '#e5e5e5' : '#f9f9f9')};
 `;
 
-const AccordionContent = styled.div<{ isOpen: boolean }>`
+const AccordionContent = styled.div.attrs<{ isOpen: boolean }>({
+  isOpen: undefined,
+})<{ isOpen: boolean }>`
   max-height: ${props => (props.isOpen ? '200px' : '0')};
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -55,7 +60,10 @@ const AccordionContent = styled.div<{ isOpen: boolean }>`
   background-color: #fff;
 `;
 
-const PlusMinusIcon = styled.span<{ isOpen: boolean }>`
+// Filter out isOpen prop before it reaches the DOM
+const PlusMinusIcon = styled.span.attrs<{ isOpen: boolean }>({
+  isOpen: undefined,
+})<{ isOpen: boolean }>`
   font-size: 24px;
   transition: transform 0.3s ease;
   transform: rotate(${props => (props.isOpen ? '45deg' : '0')});
@@ -70,7 +78,7 @@ const Accordion = () => {
 
   return (
     <Container>
-        <AccordionBackgroundImage src={FaqsBackground} alt="FAQs Background" layout="fill" />
+      <AccordionBackgroundImage src={FaqsBackground} alt="FAQs Background" layout="fill" />
       <FAQHeading>FAQs</FAQHeading>
       <AccordionItem>
         <AccordionTitle isOpen={openIndex === 0} onClick={() => toggleAccordion(0)}>
@@ -104,6 +112,8 @@ const Accordion = () => {
 };
 
 export default Accordion;
+
+
 // // Container for the accordion
 // const AccordionContainer = styled.section`
 //   position: relative;

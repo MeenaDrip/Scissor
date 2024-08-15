@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Image from 'next/image';
-import Aboutlogo from '../assets/AboutLogo.png' ; // Adjust the path to your actual image file
+import AboutLogo from '../assets/AboutLogo.png'; // Adjust the path to your actual image file
 
 // Slide-in keyframe animations
 const slideInLeft = keyframes`
@@ -39,22 +39,36 @@ const AboutContainer = styled.section`
     flex-direction: column;
     text-align: center;
   }
+
   @media (max-width: 425px) {
     width: 100%;
-    
   }
 `;
 
-const TextContainer = styled.div<{ animate: boolean }>`
+const TextContainer = styled.div<{ animate?: string }>`
   flex: 1;
   margin-right: 20px;
   opacity: 0;
   transform: translateX(-100px);
-  animation: ${({ animate }) => (animate ? slideInLeft : 'none')} 1s ease forwards;
+  animation: ${({ animate }) => (animate === 'true' ? slideInLeft : 'none')} 1s ease forwards;
 
   @media (max-width: 768px) {
     margin-right: 0;
     margin-bottom: 20px;
+    transform: translateX(0);
+  }
+`;
+
+const LogoContainer = styled.div<{ animate?: string }>`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(100px);
+  animation: ${({ animate }) => (animate === 'true' ? slideInRight : 'none')} 1s ease forwards;
+
+  @media (max-width: 768px) {
     transform: translateX(0);
   }
 `;
@@ -69,20 +83,6 @@ const Paragraph = styled.p`
   font-size: 1.2rem;
   line-height: 1.6;
   color: #333;
-`;
-
-const LogoContainer = styled.div<{ animate: boolean }>`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transform: translateX(100px);
-  animation: ${({ animate }) => (animate ? slideInRight : 'none')} 1s ease forwards;
-
-  @media (max-width: 768px) {
-    transform: translateX(0);
-  }
 `;
 
 const About = () => {
@@ -119,7 +119,7 @@ const About = () => {
 
   return (
     <AboutContainer>
-      <TextContainer ref={textRef} animate={animate}>
+      <TextContainer ref={textRef} animate={animate ? 'true' : undefined}>
         <Heading>Why SnipLink</Heading>
         <Paragraph>
           SnipLink is an advanced URL shortening service that makes it easy to share concise links.
@@ -128,8 +128,8 @@ const About = () => {
           presence and make link sharing more efficient.
         </Paragraph>
       </TextContainer>
-      <LogoContainer ref={logoRef} animate={animate}>
-        <Image src={Aboutlogo} alt="About Logo" width={500} height={500} />
+      <LogoContainer ref={logoRef} animate={animate ? 'true' : undefined}>
+        <Image src={AboutLogo} alt="About Logo" width={500} height={500} />
       </LogoContainer>
     </AboutContainer>
   );

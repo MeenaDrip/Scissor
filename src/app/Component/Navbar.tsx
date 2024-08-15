@@ -45,7 +45,10 @@ const Span = styled.span`
   font-weight: bold;
 `;
 
-const NavLinks = styled.div<{ isMobileMenuOpen: boolean }>`
+// Update the NavLinks styled-component
+const NavLinks = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isMobileMenuOpen',
+})<{ isMobileMenuOpen: boolean }>`
   display: flex;
   gap: 20px;
 
@@ -61,7 +64,6 @@ const NavLinks = styled.div<{ isMobileMenuOpen: boolean }>`
     padding: 20px;
   }
 `;
-
 const NavLink = styled(Link)`
   font-size: 18px;
   border: transparent;
@@ -147,7 +149,7 @@ const Navbar = () => {
         <NavLink href="/">Features</NavLink>
         <NavLink href="/">FAQs</NavLink>
         <NavLink href="/Login">Login</NavLink>
-        <ButtonLink href="/SignUp">Signup</ButtonLink>
+        <ButtonLink href="/SignUp">Sign Up</ButtonLink>
       </NavLinks>
     </NavbarContainer>
   );

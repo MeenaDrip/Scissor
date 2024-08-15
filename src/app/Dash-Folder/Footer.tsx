@@ -19,6 +19,7 @@ const FooterContainer = styled.footer`
   align-items: center;
   margin: 0;
   font-size: 16px;
+  margin-left: 70px;
 `;
 
 const SocialIcons = styled.div`

@@ -24,7 +24,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem;
+  padding: 2rem;
   height: 100vh;
   background-color:#e1e8e6 ;
 
@@ -44,7 +44,6 @@ const FormContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    
   }
 `;
 
@@ -117,6 +116,10 @@ const ShortenButton = styled.button`
   &:hover {
     background-color:#07565d;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1rem;
+  }
 `;
 
 const QRButton = styled.button`
@@ -132,6 +135,9 @@ const QRButton = styled.button`
 
   &:hover {
     background-color:#c5ae98;
+  }
+  @media (max-width: 768px) {
+    padding: 12px;
   }
 `;
 
@@ -185,8 +191,7 @@ const MyUrlsButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    width: 50%;
-    margin-left: 25%;
+    width: 60%; 
   }
 `;
 
@@ -489,11 +494,11 @@ const UrlShortener: React.FC = () => {
               <Label> <FaLink /> Tinyurl URL</Label>
               <Input type="text" value={shortUrl} readOnly />
             </Section>
-            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '10px' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '10px', marginTop: '10px' }}>
               <CopyButton onClick={handleCopy}>Copy URL</CopyButton>
               <QRButton onClick={handleQRCode}>Generate QR Code</QRButton>
               </div>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '10px' }}>
               <ShortenAnotherButton onClick={handleShortenAnother}>Shorten another URL</ShortenAnotherButton>
               </div>
             {qrCodeVisible && (
