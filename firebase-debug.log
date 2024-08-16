@@ -1,0 +1,30 @@
+[debug] [2024-08-16T16:55:59.571Z] ----------------------------------------------------------------------
+[debug] [2024-08-16T16:55:59.584Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Meenerh\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-08-16T16:55:59.586Z] CLI Version:   13.15.1
+[debug] [2024-08-16T16:55:59.587Z] Platform:      win32
+[debug] [2024-08-16T16:55:59.588Z] Node Version:  v20.12.2
+[debug] [2024-08-16T16:55:59.588Z] Time:          Fri Aug 16 2024 17:55:59 GMT+0100 (West Africa Standard Time)
+[debug] [2024-08-16T16:55:59.589Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-08-16T16:55:59.640Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-08-16T16:56:00.370Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-08-16T16:56:00.372Z] > authorizing via signed-in user (meenharn61@gmail.com)
+[debug] [2024-08-16T16:56:00.373Z] [iam] checking project sniplink-url-shortener for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-08-16T16:56:00.377Z] > refreshing access token with scopes: []
+[debug] [2024-08-16T16:56:00.382Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-08-16T16:56:00.382Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-08-16T16:56:01.314Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-08-16T16:56:01.316Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-08-16T16:56:01.516Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/sniplink-url-shortener:testIamPermissions [none]
+[debug] [2024-08-16T16:56:01.517Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/sniplink-url-shortener:testIamPermissions x-goog-quota-user=projects/sniplink-url-shortener
+[debug] [2024-08-16T16:56:01.518Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sniplink-url-shortener:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-08-16T16:56:01.933Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-08-16T16:56:01.934Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-08-16T16:56:03.054Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/sniplink-url-shortener:testIamPermissions 200
+[debug] [2024-08-16T16:56:03.055Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sniplink-url-shortener:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-08-16T16:56:03.058Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sniplink-url-shortener [none]
+[debug] [2024-08-16T16:56:24.303Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects/sniplink-url-shortener, {"headers":{},"method":"GET","signal":{}}): FetchError: request to https://firebase.googleapis.com/v1beta1/projects/sniplink-url-shortener failed, reason: connect ETIMEDOUT 216.58.223.202:443
+[debug] [2024-08-16T16:56:24.305Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects/sniplink-url-shortener (original: request to https://firebase.googleapis.com/v1beta1/projects/sniplink-url-shortener failed, reason: connect ETIMEDOUT 216.58.223.202:443)
+[debug] [2024-08-16T16:56:24.312Z] Specified "public" directory "(public)" does not exist; Deploy to Hosting site "" may fail or be empty.
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier

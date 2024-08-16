@@ -76,11 +76,6 @@ const BoxDescription = styled.p`
   color: #666;
 `;
 
-const Title = styled.h2`
-  font-size: 30px;
-  margin-bottom: 10px;
-`;
-
 const StyledLink = styled.a`
   text-decoration: none;
   color: black; /* Maintain the text color */

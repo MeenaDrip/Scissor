@@ -11,14 +11,19 @@ export const shortenUrl = async (longUrl: string, customAlias: string) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_TINYURL_API_KEY }`, // Correct format for the API key
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_TINYURL_API_KEY}`, // Correct format for the API key
           'Content-Type': 'application/json',
         },
       }
     );
 
     return response.data.data.tiny_url; // Ensure this matches TinyURL's response structure
-  } catch (error: any) {
-    throw new Error(error.response?.data?.errors?.[0] || 'Failed to shorten URL');
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    // Narrow down the type of 'error'
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.errors?.[0] || 'Failed to shorten URL');
+    } else {
+      throw new Error('An unexpected error occurred');
+    }
   }
 };

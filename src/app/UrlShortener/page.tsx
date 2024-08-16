@@ -346,7 +346,6 @@ const downloadQRCode = (url: string) => {
     document.body.removeChild(downloadLink);
   }
 };
-
 const UrlShortener: React.FC = () => {
   const [longUrl, setLongUrl] = useState('');
   const [customAlias, setCustomAlias] = useState('');
@@ -359,7 +358,6 @@ const UrlShortener: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
     setShortUrl('');
     setQrCodeVisible(false);
   
@@ -374,7 +372,6 @@ const UrlShortener: React.FC = () => {
           clickCount: 0,
           createdAt: new Date(),
         });
-        // Fetch the URLs again to update the state
         const newUrl = {
           id: docRef.id,
           originalUrl: longUrl,
@@ -385,20 +382,24 @@ const UrlShortener: React.FC = () => {
         setUrls((prevUrls) => [...prevUrls, newUrl]);
         console.log("Document written with ID: ", docRef.id);
       }
-    } catch (err: any) {
-      setError(err.message || 'Failed to shorten URL');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error(err.message || 'Failed to shorten URL');
+      } else {
+        console.error('An unknown error occurred');
+      }
     }
   };
-  
-  const handleUrlClick = async (urlId: string) => {
-    const user = auth.currentUser;
-    if (user) {
-      const urlRef = doc(firestore, 'users', user.uid, 'shortenedUrls', urlId);
-      await updateDoc(urlRef, {
-        clickCount: increment(1),
-      });
-    }
-  };
+
+  // const handleUrlClick = async (urlId: string) => {
+  //   const user = auth.currentUser;
+  //   if (user) {
+  //     const urlRef = doc(firestore, 'users', user.uid, 'shortenedUrls', urlId);
+  //     await updateDoc(urlRef, {
+  //       clickCount: increment(1),
+  //     });
+  //   }
+  // };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shortUrl);

@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { 
-  FaHome, FaLink, FaQrcode, FaChartBar, 
-  FaEnvelope, FaSignOutAlt, FaCog, FaBars, FaTimes 
+  FaHome, FaLink, FaChartBar, 
+  FaEnvelope, FaSignOutAlt, FaBars, FaTimes 
 } from 'react-icons/fa';
 import { auth } from '@/app/Firebase/firebase';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 
 const SidebarContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -115,7 +115,7 @@ const Divider = styled.div`
 
 const DashboardSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {

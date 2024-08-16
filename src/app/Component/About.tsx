@@ -108,23 +108,11 @@ const GetStartedButton = styled.button`
   }
 `;
 
-const Heading = styled.h2`
-  font-size: 2.5rem;
-  color: #2d614b;
-  margin-bottom: 20px;
-`;
-
-const Paragraph = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #333;
-`;
 
 const About = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const [animate, setAnimate] = React.useState(false);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -138,20 +126,23 @@ const About = () => {
         threshold: 0.3, // Trigger when 30% of the element is visible
       }
     );
-
-    if (textRef.current) {
-      observer.observe(textRef.current);
+  
+    const textElement = textRef.current;
+    const logoElement = logoRef.current;
+  
+    if (textElement) {
+      observer.observe(textElement);
     }
-    if (logoRef.current) {
-      observer.observe(logoRef.current);
+    if (logoElement) {
+      observer.observe(logoElement);
     }
-
+  
     return () => {
-      if (textRef.current) observer.unobserve(textRef.current);
-      if (logoRef.current) observer.unobserve(logoRef.current);
+      if (textElement) observer.unobserve(textElement);
+      if (logoElement) observer.unobserve(logoElement);
     };
   }, []);
-
+  
   return (
     <AboutContainer>
       <TextContainer ref={textRef} animate={animate ? 'true' : undefined}>
