@@ -351,7 +351,7 @@ const UrlShortener: React.FC = () => {
   const [customAlias, setCustomAlias] = useState('');
   const [domain, setDomain] = useState('tinyurl.com');
   const [shortUrl, setShortUrl] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [qrCodeVisible, setQrCodeVisible] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [urls, setUrls] = useState<ShortenedUrl[]>([]);
@@ -415,7 +415,7 @@ const UrlShortener: React.FC = () => {
     setCustomAlias('');
     setDomain('tinyurl.com');
     setShortUrl('');
-    setError('');
+    // setError('');
     setQrCodeVisible(false);
   };
 
