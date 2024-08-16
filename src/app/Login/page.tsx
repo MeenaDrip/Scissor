@@ -265,11 +265,10 @@ const handleGoogleSignIn = async () => {
           </ForgotPasswordLink>
           <ButtonPrimary type="submit">Login</ButtonPrimary>
         </Form>
-        // Update this part
-<FooterText>
-  Don&apos;t have an account? <Link href="/SignUp" className='link'>Sign Up</Link>
-</FooterText>
-
+     
+    <FooterText>
+        Don&apos;t have an account? <Link href="/SignUp" className='link'>Sign Up</Link>
+    </FooterText>
       </FormContainer>
     </Container>
   );

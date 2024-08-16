@@ -8,7 +8,7 @@ import { FaWandMagicSparkles } from 'react-icons/fa6';
 import Image from 'next/image';
 import SidePicture from '../assets/SidePic.png';
 import SideBar from '../Dash-Folder/Sidebar';
-import { collection, addDoc, getDocs, doc, updateDoc, increment } from 'firebase/firestore';
+import { collection, addDoc, getDocs} from 'firebase/firestore';
 import { auth, firestore } from '../Firebase/firebase'; // Adjust the path based on your project structure
 
 // Define the type for URLs fetched from Firestore
@@ -351,7 +351,7 @@ const UrlShortener: React.FC = () => {
   const [customAlias, setCustomAlias] = useState('');
   const [domain, setDomain] = useState('tinyurl.com');
   const [shortUrl, setShortUrl] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const [qrCodeVisible, setQrCodeVisible] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [urls, setUrls] = useState<ShortenedUrl[]>([]);
@@ -382,15 +382,15 @@ const UrlShortener: React.FC = () => {
         setUrls((prevUrls) => [...prevUrls, newUrl]);
         console.log("Document written with ID: ", docRef.id);
       }
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.error(err.message || 'Failed to shorten URL');
+    }  catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message || 'Failed to shorten URL');
       } else {
         console.error('An unknown error occurred');
       }
     }
   };
-
+ 
   // const handleUrlClick = async (urlId: string) => {
   //   const user = auth.currentUser;
   //   if (user) {
