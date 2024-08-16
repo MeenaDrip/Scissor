@@ -192,16 +192,15 @@ const SignUpPage = () => {
     event.preventDefault();
     setError(null);
     setMessage(null);
-
+  
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-
+  
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      await sendEmailVerification(user);
+      await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(auth.currentUser!);
       setMessage('Registration successful! Please check your email to verify your account.');
     } catch (error) {
       if (error instanceof Error) {
@@ -211,11 +210,10 @@ const SignUpPage = () => {
       }
     }
   };
-
+  
   const handleGoogleSignIn = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
+      await signInWithPopup(auth, googleProvider);
       router.push('/Dashboard'); // Redirect to your desired page after successful sign-in
     } catch (error) {
       if (error instanceof Error) {
@@ -225,7 +223,7 @@ const SignUpPage = () => {
       }
     }
   };
-
+  
   return (
     <Container>
       <LogoContainer>
@@ -274,7 +272,7 @@ const SignUpPage = () => {
           <ButtonPrimary type="submit">Sign Up</ButtonPrimary>
         </Form>
         <FooterText>
-          Already have an account? <Link href="/Login">Login</Link>
+        Already have an account? <Link href="/Login">Login</Link>
         </FooterText>
       </FormContainer>
     </Container>

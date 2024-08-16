@@ -161,7 +161,6 @@ const ButtonPrimary = styled.button`
     width: 100%;
   }
 `;
-
 const FooterText = styled.p`
   margin-top: 20px;
   font-size: 15px;
@@ -173,6 +172,7 @@ const FooterText = styled.p`
     font-size: 13px;
   }
 `;
+
 
 const ForgotPasswordLink = styled.a`
   color: #2d614b;
@@ -195,42 +195,36 @@ const LoginPage = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const handleLogin = async (event: FormEvent) => {
-    event.preventDefault();
-    setError(null);
+// In handleLogin function
+const handleLogin = async (event: FormEvent) => {
+  event.preventDefault();
+  setError(null);
 
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      if (user.emailVerified) {
-        router.push('/Dashboard'); // Redirect to your desired page after successful login
-      } else {
-        setError('Please verify your email before logging in.');
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('An unknown error occurred');
-      }
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    router.push('/Dashboard'); // Redirect to your desired page after successful login
+  } catch (error) {
+    if (error instanceof Error) {
+      setError(error.message);
+    } else {
+      setError('An unknown error occurred');
     }
-  };
+  }
+};
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-      // Additional user info if needed
-      router.push('/Dashboard'); // Redirect to your desired page after successful sign-in
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('An unknown error occurred');
-      }
+// In handleGoogleSignIn function
+const handleGoogleSignIn = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+    router.push('/Dashboard'); // Redirect to your desired page after successful sign-in
+  } catch (error) {
+    if (error instanceof Error) {
+      setError(error.message);
+    } else {
+      setError('An unknown error occurred');
     }
-  };
+  }
+};
 
   return (
     <Container>
@@ -271,9 +265,11 @@ const LoginPage = () => {
           </ForgotPasswordLink>
           <ButtonPrimary type="submit">Login</ButtonPrimary>
         </Form>
-        <FooterText>
-          Don't have an account? <Link href="/SignUp" className='link'>Sign Up</Link>
-        </FooterText>
+        // Update this part
+<FooterText>
+  Don&apos;t have an account? <Link href="/SignUp" className='link'>Sign Up</Link>
+</FooterText>
+
       </FormContainer>
     </Container>
   );
