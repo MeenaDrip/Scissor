@@ -18,6 +18,7 @@ const NavbarContainer = styled.nav`
   left: 0;
   width: 100%;
   display: flex;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
@@ -51,6 +52,7 @@ const NavLinks = styled.div.withConfig({
 })<{ isMobileMenuOpen: boolean }>`
   display: flex;
   gap: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   @media (max-width: 768px) {
     display: ${props => (props.isMobileMenuOpen ? 'flex' : 'none')};
@@ -145,7 +147,6 @@ const Navbar = () => {
       </HamburgerMenu>
       <NavLinks isMobileMenuOpen={isMobileMenuOpen}>
         <NavLink href="/">Home</NavLink>
-        <NavLink href="/">About</NavLink>
         <NavLink href="/">Features</NavLink>
         <NavLink href="/">FAQs</NavLink>
         <NavLink href="/Login">Login</NavLink>

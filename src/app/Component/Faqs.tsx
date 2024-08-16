@@ -2,23 +2,19 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import FaqsBackground from '../assets/HeroBg.jpg'; // Adjust the path based on your actual file location
 
 const Container = styled.div`
   margin: 0 auto;
   padding: 50px;
-  max-width: 800px;
+  width:100%;
+  background: linear-gradient(135deg, #e8e8e8, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `;
-const AccordionBackgroundImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  object-fit: cover;
-`; 
+
+const AccordionContainer = styled.div`
+   max-width: 800px;
+   margin: 0 auto;
+`
 const FAQHeading = styled.h2`
   text-align: center;
   margin-bottom: 40px;
@@ -34,10 +30,7 @@ const AccordionItem = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-// Filter out isOpen prop before it reaches the DOM
-const AccordionTitle = styled.div.attrs<{ isOpen: boolean }>({
-  isOpen: undefined,
-})<{ isOpen: boolean }>`
+const AccordionTitle = styled.div<{ $isOpen: boolean }>`
   padding: 20px;
   cursor: pointer;
   display: flex;
@@ -45,31 +38,26 @@ const AccordionTitle = styled.div.attrs<{ isOpen: boolean }>({
   align-items: center;
   font-size: 18px;
   color: #333;
-  background-color: ${props => (props.isOpen ? '#e5e5e5' : '#f9f9f9')};
+  background-color: ${props => (props.$isOpen ? '#e5e5e5' : '#f9f9f9')};
 `;
 
-const AccordionContent = styled.div.attrs<{ isOpen: boolean }>({
-  isOpen: undefined,
-})<{ isOpen: boolean }>`
-  max-height: ${props => (props.isOpen ? '200px' : '0')};
+const AccordionContent = styled.div<{ $isOpen: boolean }>`
+  max-height: ${props => (props.$isOpen ? '200px' : '0')};
   overflow: hidden;
   transition: max-height 0.3s ease;
-  padding: ${props => (props.isOpen ? '20px' : '0 20px')};
+  padding: ${props => (props.$isOpen ? '20px' : '0 20px')};
   font-size: 16px;
-  color: #555;
+  color:  #529277;
   background-color: #fff;
 `;
 
-// Filter out isOpen prop before it reaches the DOM
-const PlusMinusIcon = styled.span.attrs<{ isOpen: boolean }>({
-  isOpen: undefined,
-})<{ isOpen: boolean }>`
+const PlusMinusIcon = styled.span<{ $isOpen: boolean }>`
   font-size: 24px;
   transition: transform 0.3s ease;
-  transform: rotate(${props => (props.isOpen ? '45deg' : '0')});
+  transform: rotate(${props => (props.$isOpen ? '45deg' : '0')});
 `;
 
-const Accordion = () => {
+const Accordion: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {
@@ -78,35 +66,38 @@ const Accordion = () => {
 
   return (
     <Container>
-      <AccordionBackgroundImage src={FaqsBackground} alt="FAQs Background" layout="fill" />
       <FAQHeading>FAQs</FAQHeading>
+      <AccordionContainer>
       <AccordionItem>
-        <AccordionTitle isOpen={openIndex === 0} onClick={() => toggleAccordion(0)}>
+        <AccordionTitle $isOpen={openIndex === 0} onClick={() => toggleAccordion(0)}>
           What is SnipLink URL Shortener and how does it work?
-          <PlusMinusIcon isOpen={openIndex === 0}>+</PlusMinusIcon>
+          <PlusMinusIcon $isOpen={openIndex === 0}>+</PlusMinusIcon>
         </AccordionTitle>
-        <AccordionContent isOpen={openIndex === 0}>
+        <AccordionContent $isOpen={openIndex === 0}>
           SnipLink URL Shortener is a tool that allows you to create short, easy-to-share links from long URLs. Simply enter the long URL, and SnipLink generates a shorter version that redirects to the original link when clicked.
         </AccordionContent>
       </AccordionItem>
+      
       <AccordionItem>
-        <AccordionTitle isOpen={openIndex === 1} onClick={() => toggleAccordion(1)}>
+        <AccordionTitle $isOpen={openIndex === 1} onClick={() => toggleAccordion(1)}>
           What is a QR code and what can it do?
-          <PlusMinusIcon isOpen={openIndex === 1}>+</PlusMinusIcon>
+          <PlusMinusIcon $isOpen={openIndex === 1}>+</PlusMinusIcon>
         </AccordionTitle>
-        <AccordionContent isOpen={openIndex === 1}>
+        <AccordionContent $isOpen={openIndex === 1}>
           A QR code is a type of barcode that can be scanned using a smartphone or QR code reader to quickly access information, such as a website URL, contact details, or product information.
         </AccordionContent>
       </AccordionItem>
+      
       <AccordionItem>
-        <AccordionTitle isOpen={openIndex === 2} onClick={() => toggleAccordion(2)}>
+        <AccordionTitle $isOpen={openIndex === 2} onClick={() => toggleAccordion(2)}>
           Are the shortened links permanent? Will they expire?
-          <PlusMinusIcon isOpen={openIndex === 2}>+</PlusMinusIcon>
+          <PlusMinusIcon $isOpen={openIndex === 2}>+</PlusMinusIcon>
         </AccordionTitle>
-        <AccordionContent isOpen={openIndex === 2}>
+        <AccordionContent $isOpen={openIndex === 2}>
           Shortened links are typically permanent unless the URL shortener service has a policy for link expiration or deletion. Most services offer persistent links, but some may have expiration dates or limitations based on account settings or subscription plans. Always check the specific terms and conditions of the URL shortener you use.
         </AccordionContent>
       </AccordionItem>
+      </AccordionContainer>
     </Container>
   );
 };

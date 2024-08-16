@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Component/Navbar";
-import Hero from "./Component/Hero";
+import Hero from "./Component/Urlshortener";
 import About from "./Component/About";
 import FeatureBoxes from "./Component/Features";
 import FAQS from './Component/Faqs';
@@ -11,8 +11,9 @@ export default function Home() {
     <>
     <Navbar />
     <main>
-      <Hero />
+      {/* <Hero /> */}
       <About />
+      <Hero />
       <FeatureBoxes />
       <FAQS />
     </main>

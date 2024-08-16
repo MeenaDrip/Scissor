@@ -19,15 +19,15 @@ const Container = styled.section`
   text-align: center;
   overflow: hidden;
 `;
-const HeroBackgroundImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  object-fit: cover;
-`;
+// const HeroBackgroundImage = styled(Image)`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: -1;
+//   object-fit: cover;
+// `;
 
 const HeroSection = styled.section`
   display: flex;
@@ -77,7 +77,7 @@ const Hero = () => {
 
   return (
         <Container>
-   <HeroBackgroundImage src={HeroBackground} alt="Hero Background" fill priority />
+   {/* <HeroBackgroundImage src={HeroBackground} alt="Hero Background" fill priority /> */}
       <HeroSection>
         <HeroTitle>Shorten Your URLs with SnipLink Instantly.</HeroTitle>
         <HeroSubtitle>Make your links more manageable and shareable</HeroSubtitle>

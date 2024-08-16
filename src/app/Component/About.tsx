@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 import AboutLogo from '../assets/AboutLogo.png'; // Adjust the path to your actual image file
 
 // Slide-in keyframe animations
@@ -32,12 +33,14 @@ const AboutContainer = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 50px;
-  background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e8e8e8, #ffffff);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
+    margin-top: 20px;
   }
 
   @media (max-width: 425px) {
@@ -53,9 +56,9 @@ const TextContainer = styled.div<{ animate?: string }>`
   animation: ${({ animate }) => (animate === 'true' ? slideInLeft : 'none')} 1s ease forwards;
 
   @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 20px;
     transform: translateX(0);
+    order: 2; /* Order on mobile: text below logo */
+    margin-right: 0; /* Remove margin on mobile */
   }
 `;
 
@@ -69,7 +72,39 @@ const LogoContainer = styled.div<{ animate?: string }>`
   animation: ${({ animate }) => (animate === 'true' ? slideInRight : 'none')} 1s ease forwards;
 
   @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 20px;
     transform: translateX(0);
+    order: 1; /* Order on mobile: logo above text */
+  }
+`;
+
+const HeroTitle = styled.h2`
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #2d614b;
+  /* text-shadow: 1px 1px 2px black; */
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 2px black;
+`;
+
+const GetStartedButton = styled.button`
+  background-color: #2d614b;
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #05453d;
   }
 `;
 
@@ -120,13 +155,11 @@ const About = () => {
   return (
     <AboutContainer>
       <TextContainer ref={textRef} animate={animate ? 'true' : undefined}>
-        <Heading>Why SnipLink</Heading>
-        <Paragraph>
-          SnipLink is an advanced URL shortening service that makes it easy to share concise links.
-          With SnipLink, you can shorten long URLs, track link performance, and manage your links
-          in a user-friendly dashboard. Our service is designed to help you maximize your online
-          presence and make link sharing more efficient.
-        </Paragraph>
+        <HeroTitle>Shorten Your URLs with SnipLink Instantly.</HeroTitle>
+        <HeroSubtitle>Make your links more manageable and shareable</HeroSubtitle>
+        <Link href='/SignUp'>
+          <GetStartedButton>Get Started</GetStartedButton>
+        </Link>
       </TextContainer>
       <LogoContainer ref={logoRef} animate={animate ? 'true' : undefined}>
         <Image src={AboutLogo} alt="About Logo" width={500} height={500} />

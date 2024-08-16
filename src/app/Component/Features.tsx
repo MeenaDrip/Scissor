@@ -13,9 +13,10 @@ const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  /* background: linear-gradient(135deg, #7acaff,#2d614b);
-  margin-top: 1rem; */
+  background: linear-gradient(135deg, #e8e8e8, #ffffff);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `;
 
 const FeatureList = styled.div`
